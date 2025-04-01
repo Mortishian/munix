@@ -10,14 +10,15 @@ all: build
 	$(MAKE) -C include
 	$(MAKE) -C init
 	$(MAKE) -C kernel
+	$(MAKE) -C mm
 	$(CC) -T linker.ld -o build/image.bin -ffreestanding -O2 -nostdlib build/*.o -lgcc
 	cp $(TARGET) sysroot/boot/image.bin
 	grub2-mkrescue -o $(ISOTARGET) sysroot
 	sync
-	qemu-system-i386 -cdrom build/image.iso
+	qemu-system-i386 -cdrom build/image.iso -m 16
 
 clean:
-	rm boot/*.o init/*.o kernel/*.o
+	rm boot/*.o init/*.o kernel/*.o mm/*.o
 	rm build/*
 	rm sysroot/boot/image.bin
 

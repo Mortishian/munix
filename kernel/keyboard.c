@@ -143,8 +143,9 @@ kb_irq ()
         }
         else if (scancode == 0x1C)
         {
-            extern tty tty0;
             cons_write ("\n");
+            extern tty tty0;
+            tty_write (&tty0, kbd_buf, 80);
             for (int i = 0; i < 80; i++)
             {
                 kbd_buf[i] = '\0';
@@ -177,8 +178,9 @@ kb_irq ()
             kbd_buf[kbd_buf_position] = character;
             kbd_buf_position++;
             kbd_buf[kbd_buf_position] = '\0';
-            extern tty tty0;
-            tty_handle_key (&tty0, character);
+            /* This is how we would handle it in raw mode, not implemented yet ofc: */
+            /* extern tty tty0;
+            tty_handle_key (&tty0, character); */
         }
     }
     else

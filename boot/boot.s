@@ -21,11 +21,16 @@ stack_top:
 .type _start, @function
 _start:
 	mov $stack_top, %esp
+	.extern copy_mb_info
+	#push %eax
+	#push %ebx
+	#call copy_mb_info
 
 	.extern setup_gdt
-	call setup_gdt
-	
-	jmp main
+	#call setup_gdt
+	push %eax
+	push %ebx
+	call main
 .global load_idt
 load_idt:
 	.extern idtptr
