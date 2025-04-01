@@ -178,6 +178,7 @@ kb_irq ()
             kbd_buf[kbd_buf_position] = character;
             kbd_buf_position++;
             kbd_buf[kbd_buf_position] = '\0';
+            cons_write (character);
             /* This is how we would handle it in raw mode, not implemented yet
              * ofc: */
             /* extern tty tty0;
