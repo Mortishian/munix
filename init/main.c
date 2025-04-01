@@ -6,17 +6,16 @@
 
 tty tty0;
 
-extern void trap_init ();
-extern void sti ();
+extern void trap_init();
+extern void sti();
 
-void
-main ()
-{
-    tty_init (&tty0);
-    trap_init ();
-    printk ("OK\n\r");
-    tty_clear_buffer(&tty0);
-    /* This is the safest place to enable interrupts */
-    sti ();
-    for (;;) ;
+void main() {
+  tty_init(&tty0);
+  trap_init();
+  printk("OK\n\r");
+  tty_clear_buffer(&tty0);
+  /* This is the safest place to enable interrupts */
+  sti();
+  for (;;)
+    ;
 }
