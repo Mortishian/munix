@@ -135,7 +135,7 @@ kb_irq ()
     {
         if (scancode == 0x3A)
         {
-            (capslock) == !(shift || capslock);
+            (capslock) = !(shift || capslock);
         }
         else if (scancode == 0x2A || scancode == 0x36)
         {
