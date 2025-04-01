@@ -29,7 +29,6 @@ tty_write (tty *tty, char *buf, int length)
             /* We'll clear the buffer, most of the input was unwanted anyway if
              * we got that far. */
             tty_clear_buffer (tty);
-            return -1;
         }
         char c = buf[i];
         tty->input_buffer[tty->input_head] = c;
@@ -45,7 +44,7 @@ tty_write (tty *tty, char *buf, int length)
         }
         else
         {
-            cons_putchar (c);
+            // cons_putchar (c);
         }
     }
     return length;
