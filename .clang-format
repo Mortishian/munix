@@ -1,0 +1,10 @@
+BasedOnStyle: GNU
+PointerAlignment: Right
+AlignAfterOpenBracket: false
+SortIncludes: CaseInsensitive
+BinPackArguments: true
+BinPackParameters: true
+AlwaysBreakAfterDefinitionReturnType: None
+BreakBeforeBraces: Allman
+ColumnLimit: 80
+IndentWidth: 4
