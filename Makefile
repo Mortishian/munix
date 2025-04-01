@@ -5,7 +5,7 @@ TARGET=build/image.bin
 ISOTARGET=build/image.iso
 CC=i386-elf-gcc
 
-all:
+all: build
 	$(MAKE) -C boot
 	$(MAKE) -C include
 	$(MAKE) -C init
@@ -22,3 +22,6 @@ clean:
 
 format:
 	@find boot include init kernel -type f \( -name "*.c" -o -name "*.h" \) | xargs clang-format -i
+
+build:
+	mkdir build
