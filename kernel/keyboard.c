@@ -178,7 +178,8 @@ kb_irq ()
             kbd_buf[kbd_buf_position] = character;
             kbd_buf_position++;
             kbd_buf[kbd_buf_position] = '\0';
-            /* This is how we would handle it in raw mode, not implemented yet ofc: */
+            /* This is how we would handle it in raw mode, not implemented yet
+             * ofc: */
             /* extern tty tty0;
             tty_handle_key (&tty0, character); */
         }

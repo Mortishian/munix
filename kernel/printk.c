@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include <stddef.h>
-#include <sys/timer.h>
 #include <sys/console.h>
+#include <sys/timer.h>
 
 int
 vsnprintf (char *buffer, size_t size, const char *fmt, va_list args)
@@ -56,5 +56,5 @@ printk (const char *fmt, ...)
     va_start (args, fmt);
     int ret = vsnprintf (buffer, sizeof (buffer), fmt, args);
     va_end (args);
-    cons_write(buffer);
+    cons_write (buffer);
 }

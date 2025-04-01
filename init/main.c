@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include <sys/console.h>
+#include <sys/memory.h>
 #include <sys/timer.h>
 #include <sys/tty.h>
-#include <sys/memory.h>
 #include <system.h>
 
 #include "multiboot.h"
