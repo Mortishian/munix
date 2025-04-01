@@ -19,6 +19,7 @@ all: build
 clean:
 	rm boot/*.o init/*.o kernel/*.o
 	rm build/*
+	rm sysroot/boot/image.bin
 
 format:
 	@find boot include init kernel -type f \( -name "*.c" -o -name "*.h" \) | xargs clang-format -i

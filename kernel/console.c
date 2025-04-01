@@ -37,7 +37,7 @@ vga_entry (unsigned char uc, uint8_t color)
 uint16_t *buf = (const uint16_t *)0xB8000;
 uint8_t def_color;
 #define WIDTH 80
-#define HEIGHT 25
+#define HEIGHT 24
 int col, row;
 
 void
@@ -61,7 +61,7 @@ cons_handle_cursor ()
 void
 cons_new_line ()
 {
-    if (row == HEIGHT)
+    if (row == HEIGHT - 1)
     {
         cons_scrup ();
     }
