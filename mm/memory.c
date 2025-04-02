@@ -14,7 +14,7 @@ mem_init (multiboot_info_t *mbd)
     available_memory = 0;
     if (!(mbd->flags >> 6 & 0x1))
     {
-        panic ("invalid memory map");
+        panic ("no memory map");
     }
 
     for (int i = 0; i < mbd->mmap_length; i += sizeof (multiboot_memory_map_t))

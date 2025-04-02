@@ -18,10 +18,10 @@ main (multiboot_info_t *mbd, unsigned int magic)
 {
     setup_gdt ();
     tty_init (&tty0);
+    printk("Starting munix...\n");
     trap_init ();
     mem_init (mbd);
     printk ("OK\n\r");
-    tty_clear_buffer (&tty0);
     /* This is the safest place to enable interrupts */
     sti ();
     for (;;)
