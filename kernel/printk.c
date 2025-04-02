@@ -51,7 +51,7 @@ vsnprintf (char *buffer, size_t size, const char *fmt, va_list args)
 void
 printk (const char *fmt, ...)
 {
-    char buffer[256];
+    char buffer[400];
     va_list args;
     va_start (args, fmt);
     int ret = vsnprintf (buffer, sizeof (buffer), fmt, args);

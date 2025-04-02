@@ -1,13 +1,35 @@
 #include "multiboot.h"
-#include <system.h>
 #include <sys/console.h>
+#include <sys/panic.h>
+#include <system.h>
 
-int *lower_memory, *upper_memory, *total_memory;
+int total_memory, available_memory;
 
-void mem_init(multiboot_info_t *mbd)
+/* This parses the memory map given by GRUB, and performs other tasks (as well
+ * as, checks if we even got one */
+void
+mem_init (multiboot_info_t *mbd)
 {
-    lower_memory = (int*)mbd->mem_lower;
-    upper_memory = (int*)mbd->mem_upper;
-    //total_memory = mbd->mem_upper + mbd->mem_lower;
-    printk("lower memory %dkb, upper memory %dkb\n", lower_memory, upper_memory);
+    total_memory = 0;
+    available_memory = 0;
+    if (!(mbd->flags >> 6 & 0x1))
+    {
+        panic ("invalid memory map");
+    }
+
+    for (int i = 0; i < mbd->mmap_length; i += sizeof (multiboot_memory_map_t))
+    {
+        multiboot_memory_map_t *mmmt
+            = (multiboot_memory_map_t *)(mbd->mmap_addr + i);
+
+        total_memory = total_memory + mmmt->len;
+
+        if (mmmt->type == MULTIBOOT_MEMORY_AVAILABLE)
+        {
+            available_memory = available_memory + mmmt->len;
+        }
+    }
+    /* Most of the time we'll be dealing with these numbers in bytes though*/
+    printk ("%dkb total, %dkb free\n", total_memory / 1024,
+        available_memory / 1024);
 }

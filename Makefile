@@ -23,7 +23,7 @@ clean:
 	rm sysroot/boot/image.bin
 
 format:
-	@find boot include init kernel -type f \( -name "*.c" -o -name "*.h" \) | xargs clang-format -i
+	@find boot include init kernel mm -type f \( -name "*.c" -o -name "*.h" \) | xargs clang-format -i
 
 build:
 	mkdir build

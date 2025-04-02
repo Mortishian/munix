@@ -72,6 +72,8 @@ tty_clear_buffer (tty *tty)
     {
         tty->input_buffer[i] = 0;
     }
+    tty->input_head = 0;
+    tty->input_tail = 0;
 }
 
 void
